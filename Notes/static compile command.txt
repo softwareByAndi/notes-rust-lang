@@ -1,0 +1,17 @@
+rustc -Z unstable-options -C target-feature=+crt-static main.rs -o helloworld.exe
+rustc -C target-feature=+crt-static main.rs -o release/RUST_PROGRAM.exe
+
+
+to use 'rustStatic' alias, type 'rustStatic <filename>.rs' : lack of a file parameter will default to 'main.rs'
+
+
+note : I added the 'rustStatic' alias to powershell profile:
+        function rustStatic($name) {
+            mkdir -Force release
+            if (!$name) {
+                $name = "main.rs"
+            }
+            rustc -C target-feature=+crt-static $name -o release/RUST_PROGRAM.exe 
+        }
+
+note : to find profile location, type 'echo $profile'
